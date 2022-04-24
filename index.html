@@ -7,7 +7,28 @@
       <li>One common pattern we’ll see with asynchronous programming is multiple operations which depend on each other to execute or that must be executed in a certain order. </li>
       <li>We might make one request to a database and use the data returned to us to make another request and so on!</li>
       <li>This process of chaining promises together is called <code style="background-color: lightgray"><em>composition</code></em>. Promises are designed with composition in mind! </li>
-      <li></li>
-      <li></li>
+      <li style="background-color: black">
+        <pre>
+        <code style="color:red;">
+firstPromiseFunction<span style="color:pink;">()
+  .then((</span>firstResolveVal<span style="color:pink;">) => {
+      return</span> secondPromiseFunction<span style="color:pink;">(</span>firstResolveVal<span style="color:pink;">);
+  })
+  .then((</span>secondResolveVal<span style="color:pink;">) => {</span>
+      console<span style="color:pink;">.log(</span>secondResolveVal<span style="color:pink;">);
+  });</span>
+        </code>
+        </pre>
+      </li>
+      <li>
+        <p>Let’s break down what’s happening in the example:</p>
+        <ul>
+          <li>We invoke a function <code style="background-color: lightgray"><em>firstPromiseFunction()</code></em> which returns a promise.</li>
+          <li>We invoke <code style="background-color: lightgray"><em>.then()</code></em> with an anonymous function as the success handler.</li>
+          <li>Inside the success handler we return a new promise— the result of invoking a second function, <code style="background-color: lightgray"><em>secondPromiseFunction()</code></em> with the first promise’s resolved value.</li>
+          <li>We invoke a second <code style="background-color: lightgray"><em>.then()</code></em> to handle the logic for the second promise settling.</li>
+          <li>Inside that <code style="background-color: lightgray"><em>.then()</code></em>, we have a success handler which will log the second promise’s resolved value to the console.</li>
+        </ul>
+      </li>
     </ul>
 </div>
