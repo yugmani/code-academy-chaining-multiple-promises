@@ -29,6 +29,30 @@ firstPromiseFunction<span style="color:pink;">()
           <li>We invoke a second <code style="background-color: lightgray"><em>.then()</code></em> to handle the logic for the second promise settling.</li>
           <li>Inside that <code style="background-color: lightgray"><em>.then()</code></em>, we have a success handler which will log the second promise’s resolved value to the console.</li>
         </ul>
+      </li>    
+    </ul>
+    <h2>Avoiding Common Mistakes</h2>
+    <ul>
+      <li>
+        <p><strong>Mistake 1:</strong> Nesting promises instead of chaining them.</p>
+        <pre><p style="background-color: black; color:red;">
+returnsFirstPromise<span style="color:pink">()
+  .then((</span>firstResolveVal<span style="color:pink">) => {
+    return</span> returnsSecondValue<span style="color:pink">(</span>firstResolveVal<span style="color:pink">)
+      .then((</span>secondResolveVal<span style="color:pink">) => {</span>
+          console<span style="color:pink">.log(</span>secondResolveVal<span style="color:pink">);
+      })
+  })</span>
+</p></pre>
+        <p>Instead of having a clean chain of promises, we’ve nested the logic for one inside the logic of the other. Imagine if we were handling five or ten promises!</p>
+        
+        </li>
+      <li>
+        <p>
+         <strong> Mistake 2:</strong> Forgetting to return a promise.
+        </p>
+        <p>Since forgetting to return our promise won’t throw an error, this can be a really tricky thing to debug!</p>
       </li>
+    
     </ul>
 </div>
